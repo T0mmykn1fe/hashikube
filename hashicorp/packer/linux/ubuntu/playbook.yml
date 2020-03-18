@@ -1,0 +1,12 @@
+---
+- name: A demo to run ansible in a docker container
+  hosts: all
+  tasks:
+    - name: Add a file to root's home dir
+      copy:
+        dest: /root/foo
+        content: Hello World!
+        owner: root
+    - name: Return all kv v2 secrets from a path
+      debug:
+        msg: "{{ lookup('hashi_vault', 'secret=kv/ansible token=s.XVO2gc95zfQvdBm6DRk4uFWA url=http://localhost:8200') }}"
